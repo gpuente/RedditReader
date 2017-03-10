@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 
 (function(){
-  var app = angular.module('starter', ['ionic'])
+  var app = angular.module('starter', ['ionic', 'angularMoment'])
 
   app.controller('RedditController', function($scope, $http){
     $scope.posts = [];

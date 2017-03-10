@@ -30,6 +30,9 @@
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
+    <script src="lib/moment/moment.js"></script>
+    <script src="lib/angular-moment/angular-moment.js"></script>
+
     <script src="js/app.js"></script>
   </head>
   <body ng-app="starter" ng-controller="RedditController">
@@ -44,7 +47,10 @@
           <a class="item item-thumbnail-left" ng-repeat="post in posts" href="{{ post.url }}" target="_blank">
             <img ng-src="{{ post.thumbnail }}" ng-if="post.thumbnail.indexOf('http') === 0" />
             <h2 class="post-title">{{ post.title }}</h2>
-            <p>{{ post.domain }}</p>
+            <p>
+              <span am-time-ago="post.created_utc | amFromUnix" /></span>
+               - {{ post.domain }}
+            </p>
           </a>  
         </div>  
 
