@@ -16,6 +16,22 @@
           $scope.posts.push(post.data);
         });
       });
+
+    $scope.cargarNuevosPosts = function () {
+      var params_f = [];
+      if($scope.posts.length > 0){
+        params_f['after'] = $scope.posts[$scope.posts.length - 1].name;
+      }
+      $http.get('https://www.reddit.com/r/gaming/.json', {params:params_f})
+      .success(function(posts){
+        //console.log(posts);
+        angular.forEach(posts.data.children, function(post){
+          $scope.posts.push(post.data);
+        });
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+      });
+    };
+
   });
 
   app.run(function($ionicPlatform) {
